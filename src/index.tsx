@@ -21,9 +21,18 @@ const server = serve({
       },
     },
 
-    "/api/hello/:name": async (req) => {
-      const name = req.params.name;
-      return Response.json({
-        message: `Hello, ${name}!`,
-      });
+    "/api/hello/:name": {
+      async GET(req) {
+        const name = req.params.name;
+        return Response.json({
+          message: `Hello, ${name}!`,
+        });
+      },
     },
+  },
+});
+
+// Start the server
+server.listen(3000, () => {
+  console.log("Server is running on http://localhost:3000");
+});
